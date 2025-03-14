@@ -167,7 +167,9 @@ export default function TravelDetailsForm({
           <Button size={"lg"} variant="secondary" onClick={onBack}>
             Back
           </Button>
-          <Button size={"lg"} type="submit">Next</Button>
+          <Button size={"lg"} type="submit">
+            Next
+          </Button>
         </div>
       </form>
     </Form>
