@@ -1,8 +1,24 @@
-AItinerary
+# AItinerary
+
+Create personalised itineraries for your next solo traveling destination
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+Set up your environment:
+
+```bash
+export OPENAI_API_KEY=your-api-key
+```
+
+Or create a `.env` file:
+
+```bash
+OPENAI_API_KEY=<your-api-key>
+```
+
+Run the demo
 
 ```bash
 npm run dev
