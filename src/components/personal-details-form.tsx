@@ -16,7 +16,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { cn } from "@/lib/utils";
 import { SoloTravelFormData } from "@/types/form";
 
 const interestOptions = [
@@ -44,15 +43,11 @@ const interestOptions = [
 ];
 
 const formSchema = z.object({
-  age: z.enum(["18-24", "25-34", "35-44", "45-54", "55+"], {
-    message: "Please select your age range.",
-  }),
+  age: z.enum(["18-24", "25-34", "35-44", "45-54", "55+"], {}),
   currentLocation: z.string().min(2, {
     message: "Please enter your current location.",
   }),
-  interests: z.array(z.string()).min(1, {
-    message: "Please select at least one interest.",
-  }),
+  interests: z.array(z.string()).min(1, {}),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -112,14 +107,7 @@ export default function PersonalDetailsForm({
               <Label htmlFor="Age">Age</Label>
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger id="Age">
-                  <SelectValue
-                    placeholder="Select"
-                    className={cn(
-                      form.formState.errors.age
-                        ? "border-red-500"
-                        : "border-border",
-                    )}
-                  />
+                  <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent position="popper">
                   <SelectItem value="18-24">18-24</SelectItem>
@@ -139,7 +127,7 @@ export default function PersonalDetailsForm({
             <FormItem className="flex flex-col space-y-1.5">
               <Label htmlFor="Age">Interests</Label>
               <ToggleGroup
-                className="grid grid-cols-3 gap-2 border rounded-md p-2"
+                className="grid grid-cols-3 gap-2 border rounded-md p-2 w-full"
                 type="multiple"
                 onValueChange={field.onChange}
                 value={field.value}
@@ -155,7 +143,7 @@ export default function PersonalDetailsForm({
         />
         {hasFormError && (
           <div className="text-red-500 text-sm">
-            <span>Please fill in all form fields</span>
+            <span>Please fill in all fields</span>
           </div>
         )}
         <div className="flex flex-row-reverse">
