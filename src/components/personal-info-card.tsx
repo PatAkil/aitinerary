@@ -83,6 +83,9 @@ export default function PersonalInfoCard({
       interests: initialForm?.interests || [],
     },
   });
+  const hasFormError =
+    !!form.formState.errors.currentLocation ||
+    !!form.formState.errors.interests;
 
   function onSubmit(values: FormValues) {
     onFormSubmit({
@@ -169,6 +172,11 @@ export default function PersonalInfoCard({
                 </FormItem>
               )}
             />
+            {hasFormError && (
+              <div className="text-red-500 text-sm">
+                <span>Please fill in all form fields</span>
+              </div>
+            )}
             <div className="flex flex-row-reverse">
               <Button>Next</Button>
             </div>
