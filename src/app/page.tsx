@@ -36,6 +36,12 @@ export default function Home() {
     console.log({ ...formData, ...data });
   };
 
+  const goBack = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
   return (
     <main className="flex min-h-screen items-center justify-center ">
       <div className="flex items-center justify-center flex-col">
@@ -58,6 +64,7 @@ export default function Home() {
             {currentStep === 2 && (
               <TravelDetailsForm
                 onFormSubmit={handleFormSubmit}
+                onBack={goBack}
                 initialForm={formData}
               />
             )}

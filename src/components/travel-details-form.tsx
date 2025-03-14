@@ -47,11 +47,13 @@ interface ProfileFormProps {
       "travelPace" | "destination" | "transportation" | "experience"
     >,
   ) => void;
+  onBack: () => void;
   initialForm?: Partial<SoloTravelFormData>;
 }
 
 export default function TravelDetailsForm({
   onFormSubmit,
+  onBack,
   initialForm,
 }: ProfileFormProps) {
   const form = useForm<FormValues>({
@@ -161,8 +163,11 @@ export default function TravelDetailsForm({
             <span>Please fill in all form fields</span>
           </div>
         )}
-        <div className="flex flex-row-reverse">
-          <Button>Next</Button>
+        <div className="flex justify-between">
+          <Button size={"lg"} variant="secondary" onClick={onBack}>
+            Back
+          </Button>
+          <Button size={"lg"} type="submit">Next</Button>
         </div>
       </form>
     </Form>

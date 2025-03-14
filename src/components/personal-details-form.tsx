@@ -147,7 +147,7 @@ export default function PersonalDetailsForm({
           </div>
         )}
         <div className="flex flex-row-reverse">
-          <Button>Next</Button>
+          <Button size={"lg"}>Next</Button>
         </div>
       </form>
     </Form>
