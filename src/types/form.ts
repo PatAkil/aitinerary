@@ -1,33 +1,14 @@
-export interface Profile {
+export interface UserDetails {
   age?: "18-24" | "25-34" | "35-44" | "45-54" | "55+";
   currentLocation?: string;
-  destination?: string;
   interests?: string[];
 }
 
-export interface Preferences {
-  interests?: string[];
-  travelPace?: "packed" | "balanced" | "free-flowing";
+export interface TravelDetails {
+  destination?: string;
+  travelPace?: "fast-paced" | "balanced" | "relaxed";
+  experience?: "beginner" | "intermediate" | "expert";
   transportation: string[];
 }
 
-interface Location {
-  title: string;
-  description: string;
-}
-
-export interface Continents {
-  continentContent?: Location[];
-  selectedContinent?: string;
-}
-
-export interface Countries {
-  countryContent?: Location[];
-  selectedCountry?: string;
-}
-
-export interface SoloTravelFormData
-  extends Profile,
-    Preferences,
-    Continents,
-    Countries {}
+export interface SoloTravelFormData extends UserDetails, TravelDetails {}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import PersonalDetailsForm from "@/components/personal-details-form";
+import TravelDetailsForm from "@/components/travel-details-form";
 import {
   Card,
   CardContent,
@@ -18,15 +19,12 @@ export default function Home() {
 
   const [formData, setFormData] = useState<SoloTravelFormData>({
     age: undefined,
-    continentContent: [],
-    countryContent: [],
     currentLocation: "",
     destination: "",
-    selectedContinent: "",
-    selectedCountry: "",
+    experience: undefined,
+    interests: [],
     transportation: [],
     travelPace: undefined,
-    interests: [],
   });
 
   const totalSteps = 3;
@@ -35,7 +33,7 @@ export default function Home() {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }
-    console.log(data);
+    console.log({ ...formData, ...data });
   };
 
   return (
@@ -46,13 +44,19 @@ export default function Home() {
           <CardHeader>
             <CardTitle>Ready for your next adventure?!</CardTitle>
             <CardDescription>
-              Create your ideal itinerary in one-click.
+              Create your perfect itinerary in just a few clicks!
             </CardDescription>
             <Progress value={(100 / (totalSteps - 1)) * (currentStep - 1)} />
           </CardHeader>
           <CardContent>
             {currentStep === 1 && (
               <PersonalDetailsForm
+                onFormSubmit={handleFormSubmit}
+                initialForm={formData}
+              />
+            )}
+            {currentStep === 2 && (
+              <TravelDetailsForm
                 onFormSubmit={handleFormSubmit}
                 initialForm={formData}
               />
