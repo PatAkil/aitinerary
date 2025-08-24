@@ -1,6 +1,13 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI();
+// Initialize OpenAI client with error handling for missing API key
+const apiKey = process.env.OPENAI_API_KEY;
+
+if (!apiKey) {
+  console.error("OPENAI_API_KEY environment variable is not set");
+}
+
+const openai = apiKey ? new OpenAI({ apiKey }) : null;
 
 const DEVELOPER_PROMPT = `
 You're an expert on solo traveling and will generate itineraries for users based on their preferences. 
@@ -28,6 +35,19 @@ Follow these guidelines:
 `;
 
 export async function POST(request: Request) {
+  // Check if OpenAI client is initialized
+  if (!openai) {
+    return new Response(
+      JSON.stringify({ 
+        error: "OpenAI API key is not configured. Please set the OPENAI_API_KEY environment variable." 
+      }), 
+      { 
+        status: 500,
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+  }
+
   try {
     const stream = new ReadableStream({
       async start(controller) {
